@@ -55,5 +55,5 @@ private
   end
 
   def task_params
-    params.require(:task).permit(:content)
+    params.require(:message).permit(:content, :status)
   end
