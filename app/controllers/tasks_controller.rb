@@ -21,7 +21,6 @@ class TasksController < ApplicationController
 
     if @task.save
       flash[:success] = 'すること　が正常に投稿されました'
-      redirect_to @task
       redirect_to root_url
     else
       @tasks = current_user.tasks.order(id: :desc).page(params[:page])
@@ -47,14 +46,16 @@ class TasksController < ApplicationController
   end
  
    def destroy
-      @task.destroy
+    @task = Task.find(params[:id])
+    @task.destroy
     flash[:success] = 'すること は正常に削除されました'
     redirect_to tasks_url
-    redirect_back(fallback_location: root_path)
+    
+    
    end
-end
  
-private
+ private
+  
   def set_task
     @task = Task.find(params[:id])
   end
@@ -69,3 +70,4 @@ private
       redirect_to root_url
     end
   end
+end
