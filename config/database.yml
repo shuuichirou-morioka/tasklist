@@ -50,7 +50,7 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  database: 
+  database: tasklist_production
   encoding: unicode
   pool: 5
   username: tasklist

@@ -26,7 +26,6 @@ class TasksController < ApplicationController
       @tasks = current_user.tasks.order(id: :desc).page(params[:page])
       flash.now[:danger] = 'すること が投稿されませんでした'
       render :new
-      render 'tasks/index'
     end
   end
   def edit
