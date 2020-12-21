@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
+  
   
   def index
-      @tasks = Task.all
+      @tasks = current_user.tasks
   end
 
   def show
@@ -16,7 +16,7 @@ class TasksController < ApplicationController
   end
 
   def create
-      @task = Task.new(task_params)
+      
       @task = current_user.tasks.build(task_params)
 
     if @task.save
