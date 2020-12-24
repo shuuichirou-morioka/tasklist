@@ -33,7 +33,7 @@ class TasksController < ApplicationController
   end
 
   def update
-      @task = Task.find(params[:id])
+      @tasks = current_user.tasks
 
     if @task.update(task_params)
       flash[:success] = 'すること は正常に更新されました'
